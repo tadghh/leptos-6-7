@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <url>
+      <loc>https://tadgh.dev/</loc>
+   </url>
+   <url>
+      <loc>https://tadgh.dev/about</loc>
+   </url>
+   <url>
+      <loc>https://tadgh.dev/projects</loc>
+   </url>
+   <url>
+      <loc>https://tadgh.dev/blog</loc>
+   </url>
+   <url>
+      <loc>https://tadgh.dev/blog/unlock-undervolting</loc>
+   </url>
+   <url>
+      <loc>https://tadgh.dev/blog/ssh-slow-notes</loc>
+   </url>
+   <url>
+      <loc>https://tadgh.dev/blog/mei-blog-post</loc>
+   </url>
+   <url>
+      <loc>https://tadgh.dev/blog/dynamic-docker-env</loc>
+   </url>
+   <url>
+      <loc>https://tadgh.dev/contact</loc>
+   </url>
+   <url>
+      <loc>https://tadgh.dev/links</loc>
+   </url>
+   <url>
+      <loc>https://tadgh.dev/ruby</loc>
+   </url>
+   <url>
+      <loc>https://tadgh.dev/highlightjs/</loc>
+   </url>
+</urlset>

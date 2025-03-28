@@ -1,0 +1,51 @@
+.intro-container {
+	@apply flex flex-col;
+}
+.intro-page-container {
+	@apply flex flex-col fade-cnt-in items-center justify-between max-w-[1200px] min-h-[7000px] sm:min-h-[4000px];
+}
+.home-section {
+	@apply flex flex-col self-start;
+}
+.prj-list > li > a > h3,
+.intro-paragraph > p {
+	@apply text-neutral-100;
+}
+.prj-list > li {
+	@apply text-neutral-300;
+}
+.prj-list > li > ul {
+	@apply flex space-x-2 text-base italic;
+}
+.prj-list > li {
+	@apply text-lg;
+}
+
+.prj-list {
+	@apply space-y-16 text-xl sm:space-y-2 alink;
+}
+
+.prj-list > li > a > h3 {
+	@apply inline pr-1 text-xl font-medium;
+}
+.intro-paragraph {
+	@apply flex flex-col space-y-2;
+}
+
+.intro-paragraph > p {
+	@apply text-xl leading-8;
+}
+
+.intro-paragraph > h2 {
+	@apply text-5xl font-bold sm:text-8xl;
+}
+.prj-pr-header {
+	@apply mb-1 text-5xl font-bold sm:text-8xl;
+}
+.c-main-nav_link {
+	@apply text-neutral-50;
+}
+
+.c-main-nav_link {
+	will-change: transform, color, width;
+}

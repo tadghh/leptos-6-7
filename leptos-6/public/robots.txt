@@ -1,0 +1,31 @@
+# Block specific bots
+User-agent: GPTBot
+Disallow: /
+Allow: /these-are-test-tokens-they-should-be-included
+
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+Allow: /these-are-test-tokens-they-should-be-included
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+# Allow all other bots but restrict sensitive areas
+User-agent: *
+Disallow: /wp-login.php
+Disallow: /.git
+Disallow: /.env
+Disallow: /confidential
+Disallow: /admin
+Disallow: /private
+Disallow: /logs
+Disallow: /db_backup.sql
+Disallow: /backup
+Allow: /

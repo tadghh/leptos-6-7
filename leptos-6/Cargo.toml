@@ -1,0 +1,153 @@
+
+[package]
+edition="2021"
+name   ="tadgh-blog-leptos"
+version="2.1.2"
+
+[lib]
+crate-type=["cdylib", "rlib"]
+
+[dependencies]
+actix-files={ version="0.6.5", optional=true }
+actix-web={ version="4.5.1", optional=true, default-features=false, features=[
+  "compress-brotli",
+  "rustls-0_22",
+] }
+actix-web-lab={ version="0.20.2", optional=true }
+console_error_panic_hook={ version="0.1", optional=true }
+futures={ version="0.3.30", default-features=false, optional=true }
+hex = "0.4.3"
+http={ version="1.0.0", default-features=false, optional=true }
+leptos={ version="0.6", features=[
+  "experimental-islands",
+  "nightly",
+  "serde",
+], default-features=false }
+leptos_actix={ version="0.6", features=["experimental-islands"], optional=true }
+leptos_meta={ version="0.6", features=["nightly"], optional=true }
+leptos_router={ version="0.6", features=["nightly"], optional=true }
+mime={ version="0.3.17", optional=true }
+pulldown-cmark={ version="0.10.3", default-features=false, optional=true, features=["html"] }
+ring={ version="0.17.8", default-features=false, optional=true }
+rustls={ version="0.22.4", default-features=false, optional=true, features=["ring"] }
+rustls-pemfile={ version="2.1.2", features=["std"], default-features=false, optional=true }
+serde={ version="1.0.202", default-features=false, optional=true }
+server_fn={ version="0.6.11", optional=true }
+sha2 = { version="0.10.8", optional=true }
+sqlx={ version="0.7.4", default-features=false, features=[
+  "chrono",
+  "macros",
+  "migrate",
+  "postgres",
+  "ipnetwork",
+  "runtime-tokio-rustls",
+  "time",
+], optional=true }
+time={ version="0.3.36", features=["serde"], optional=true }
+tokio={ version="1.37.0", optional=true }
+wasm-bindgen={ version="0.2.92", default-features=false }
+
+[features]
+# csr = ["leptos/csr", "leptos_meta/csr", "leptos_router/csr"]
+default=["ssr"]
+hydrate=[
+  "dep:console_error_panic_hook",
+  "leptos/hydrate",
+  "leptos_meta/hydrate",
+  "leptos_router/hydrate",
+]
+
+ssr=[
+  "dep:actix-files",
+  "dep:actix-web",
+  "dep:serde",
+  "dep:time",
+  "dep:sha2",
+  "dep:actix-web-lab",
+  "dep:futures",
+  "dep:leptos_actix",
+  "dep:mime",
+  "dep:pulldown-cmark",
+  "dep:ring",
+  "dep:rustls",
+  "dep:rustls-pemfile",
+  "dep:sqlx",
+  "dep:tokio",
+  "leptos/ssr",
+  "leptos_meta/ssr",
+  "leptos_router/ssr",
+]
+
+# Defines a size-optimized profile for the WASM bundle in release mode
+[profile.wasm-release]
+codegen-units=1
+inherits     ="release"
+lto          =true
+opt-level    ='z'
+panic        ="abort"
+strip        =true
+
+[profile.dev]
+incremental=false
+lto        =false
+
+[package.metadata.cargo-all-features]
+denylist         =["actix", "leptos_actix", "sqlx", "tokio"]
+skip_feature_sets=[["csr", "hydrate"], ["csr", "ssr"], ["hydrate", "ssr"]]
+[lints.rust]
+ unexpected_cfgs = { level = "warn", check-cfg = ['cfg(blog_test)'] }
+[package.metadata.leptos]
+lib-profile-release="wasm-release"
+# The name used by wasm-bindgen/cargo-leptos for the JS/WASM bundle. Defaults to the crate name
+output-name="tadgh-blog-leptos"
+# The site root folder is where cargo-leptos generate all output. WARNING: all content of this folder will be erased on a rebuild. Use it in your server setup.
+site-root="target/site"
+# The site-root relative folder where all compiled output (JS, WASM and CSS) is written
+# Defaults to pkg
+site-pkg-dir="pkg"
+# [Optional] The source CSS file. If it ends with .sass or .scss then it will be compiled by dart-sass into CSS. The CSS is optimized by Lightning CSS before being written to <site-root>/<site-pkg>/app.css
+style-file="style/output.css"
+# Assets source dir. All files found here will be copied and synchronized to site-root.
+# The assets-dir cannot have a sub directory with the same name/path as site-pkg-dir.
+#
+# Optional. Env: LEPTOS_ASSETS_DIR.
+assets-dir="public"
+# The IP and port (ex: 127.0.0.1:3000) where the server serves the content. Use it in your server setup.
+site-addr="0.0.0.0:443"
+# The port to use for automatic reload monitoring
+reload-port=3001
+
+# [Optional] Command to use when running end2end tests. It will run in the end2end dir.
+#   [Windows] for non-WSL use "npx.cmd playwright test"
+#   This binary name can be checked in Powershell with Get-Command npx
+end2end-cmd="npx playwright test"
+end2end-dir="end2end"
+#  The browserlist query used for optimizing the CSS.
+browserquery="defaults"
+# The environment Leptos will run in, usually either "DEV" or "PROD"
+env="PROD"
+# env = "DEV"
+# The features to use when compiling the bin target
+#
+# Optional. Can be over-ridden with the command line parameter --bin-features
+bin-features=["ssr"]
+# If the --no-default-features flag should be used when compiling the bin target
+#
+# Optional. Defaults to false.
+bin-default-features=true
+
+# The features to use when compiling the lib target
+#
+# Optional. Can be over-ridden with the command line parameter --lib-features
+lib-features=["hydrate"]
+
+# If the --no-default-features flag should be used when compiling the lib target
+#
+# Optional. Defaults to false.
+lib-default-features=false
+# The profile to use for the lib target when compiling for release
+bin-target-triple="x86_64-unknown-linux-gnu"
+#
+# Optional. Defaults to "release".
+[profile.dev.package."*"]
+opt-level=3

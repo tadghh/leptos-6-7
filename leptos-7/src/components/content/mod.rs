@@ -1,0 +1,10 @@
+#[cfg(feature = "ssr")]
+pub mod blog_preview;
+#[cfg(feature = "ssr")]
+pub mod blog_view;
+#[cfg(feature = "ssr")]
+pub mod project_preview;
+#[cfg(feature = "ssr")]
+pub mod tag_item;
+#[cfg(feature = "ssr")]
+pub mod tags_content;
